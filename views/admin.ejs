@@ -5,14 +5,7 @@
     <div class="grid grid-col-1 justify-center gap-4 m-10">
         <% userList.forEach((user) => { %>
             <div class="flex flex-row pb-5">
-                <p class="text-xl font-bold basis-45 pr-5"><%= user.username %> (<%= user.userType %>)</p>
-                <form method="POST">
-                    <% if (user.userType == "user") { %>
-                        <button formaction="promote/<%= user.username %>" class="w-40 h-10 text-white bg-red-500 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">Promote to Admin</button>
-                    <% } else { %>
-                        <button formaction="demote/<%= user.username %>" class="w-40 h-10 text-white bg-green-500 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">Demote to User</button>
-                    <% } %>    
-                </form>
+                <%- include('./partials/user', {user: user}) %>
             </div>
         <% }); %>
     </div>
