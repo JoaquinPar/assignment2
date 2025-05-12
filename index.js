@@ -16,12 +16,6 @@ const port = 7000;
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended: false}));
 
-let imagePaths = {
-    1: "/images/breaking-cell.jpg",
-    2: "/images/breaking-back.jpg",
-    3: "/images/baking-bread.jpg" 
-};
-
 /*
 MongoDB Connection
  */
@@ -76,9 +70,6 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/members', (req, res) => {
-    
-    let picNumber = (Math.floor(Math.random() * 3) + 1);
-
     if (!req.session.authenticated) {
         res.redirect('/');
         return;
@@ -119,7 +110,7 @@ app.get('/admin', async (req, res) => {
             });
         } else {
             return res.status(403).render('error', {
-                message: "Isufficient permissions."
+                message: "Insufficient permissions."
             });
         }
     }
